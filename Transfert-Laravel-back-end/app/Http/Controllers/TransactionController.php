@@ -13,7 +13,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $getAll = Transaction::all();
+        return $getAll;
     }
 
     /**
@@ -37,7 +38,9 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        $getTransaction = Transaction::find($transaction->id);
+        return $getTransaction;
+
     }
 
     /**

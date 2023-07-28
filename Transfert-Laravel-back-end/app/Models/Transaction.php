@@ -15,12 +15,12 @@ class Transaction extends Model
         'expediteur_id',
         'destinataire_id',
     ];
-    public function expediteur()
-    {
-        return $this->belongsTo(Client::class, 'expediteur_id');
-    }
     public function destinataire()
     {
-        return $this->belongsTo(Client::class, 'destinataire_id');
+        return $this->belongsTo(Compte::class, 'destinataire_id');
+    }
+    public function expediteur()
+    {
+        return $this->belongsTo(Compte::class, 'expediteur_id');
     }
 }
