@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientRessource;
 use App\Models\Client;
 
 class ClientController extends Controller
@@ -64,5 +65,11 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+    //show client by telephone
+    public function showByPhone($telephone)
+    {
+        $getClientByTelephone = Client::where('telephone', $telephone)->first();
+        return new ClientRessource($getClientByTelephone);
     }
 }

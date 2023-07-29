@@ -14,6 +14,10 @@ class Transaction extends Model
         'type_transaction',
         'expediteur_id',
         'destinataire_id',
+        'frais',
+        'permanent',
+        'date_transaction'
+
     ];
     public function destinataire()
     {

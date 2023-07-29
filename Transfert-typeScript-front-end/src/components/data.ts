@@ -1,0 +1,11 @@
+export let fournisseur = document.getElementById("fournisseur") as HTMLSelectElement;
+export let transaction = document.getElementById("transaction") as HTMLSelectElement;
+export let montant = document.getElementById("montant") as HTMLInputElement;
+export let nomExp = document.getElementById("nomExpediteur") as HTMLInputElement;
+export let telephoneExp = document.getElementById("telephoneExpediteur") as HTMLInputElement;
+export let telephoneDest = document.getElementById("telephoneDestinataire") as HTMLInputElement;
+export let nomDest = document.getElementById("nomDestinataire") as HTMLInputElement;
+export let iconeExp = document.getElementById("icone-expediteur") as HTMLHeadingElement;
+export let iconeDest = document.getElementById("icone-destinataire") as HTMLHeadingElement;
+export let iconeTrans = document.getElementById("icone-transaction") as HTMLHeadingElement;
+export  let submit = document.getElementById("submit") as HTMLButtonElement;

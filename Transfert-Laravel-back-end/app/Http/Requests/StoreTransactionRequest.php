@@ -11,7 +11,7 @@ class StoreTransactionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'montant' => 'required|numeric',
+            'type_transaction' => 'required|string',
+            'expediteur_id' => 'required|numeric',
+            'destinataire_id' => 'required|numeric',
+            'frais' => 'numeric|nullable',
+            'permanent' => 'boolean|nullable',
+            'date_transaction' => 'date|nullable'  
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompteRequest;
 use App\Http\Requests\UpdateCompteRequest;
+use App\Http\Resources\CompteRessource;
 use App\Models\Compte;
 
 class CompteController extends Controller
@@ -64,5 +65,13 @@ class CompteController extends Controller
     public function destroy(Compte $compte)
     {
         //
+    }
+    //show id via number 
+    public function showByNumber($numeroCompte)
+    {
+        $getCompteByNumber = Compte::whereHas('client', function ($query) use ($numeroCompte) {
+            $query->where('telephone', $numeroCompte);
+        })->first();
+        return new CompteRessource($getCompteByNumber);
     }
 }

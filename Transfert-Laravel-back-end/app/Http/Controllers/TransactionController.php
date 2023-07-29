@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Transaction;
+use Illuminate\Support\Carbon;
+
 
 class TransactionController extends Controller
 {
@@ -30,7 +32,19 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+        $transaction = Transaction::create([
+            'montant' => $request->montant,
+            'type_transaction' => $request->type_transaction,
+            'expediteur_id' => $request->expediteur_id,
+            'destinataire_id' => $request->destinataire_id,
+            'frais' => $request->frais,
+            'permanent' => $request->permanent,
+            'date_transaction' => Carbon::parse($request->date_transaction)
+        ]);
+        return response()->json([
+            'message' => 'Transaction effectuée avec succès',
+            'transaction' => $transaction
+        ], 201);
     }
 
     /**

@@ -17,8 +17,7 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'nom' => $this->faker->lastName,
-            'prenom' => $this->faker->firstName,
+            'nomComplet' => $this->faker->name(),
             'telephone' => '77' . $this->faker->numberBetween(1000000, 9999999),
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),

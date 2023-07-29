@@ -15,13 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('type_transaction');
             $table->integer('montant');
-            $table->float('frais');
+            $table->float('frais')->nullable();
             $table->unsignedBigInteger('destinataire_id');
             $table->unsignedBigInteger('expediteur_id');
-            $table->dateTime('date_transaction')->useCurrent();
+            $table->dateTime('date_transaction')->useCurrent()->nullable();
             $table->foreign('expediteur_id')->references('id')->on('comptes')->cascadeOnDelete();
             $table->foreign('destinataire_id')->references('id')->on('comptes')->cascadeOnDelete();
-            $table->integer('code')->nullable();
             $table->boolean('permanent')->nullable();
             $table->timestamps();
         });
