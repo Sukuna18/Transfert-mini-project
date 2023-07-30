@@ -25,7 +25,7 @@ class StoreTransactionRequest extends FormRequest
             'montant' => 'required|numeric',
             'type_transaction' => 'required|string',
             'expediteur_id' => 'required|numeric',
-            'destinataire_id' => 'required|numeric',
+            'destinataire_id' => 'numeric|nullable',
             'frais' => 'numeric|nullable',
             'permanent' => 'boolean|nullable',
             'date_transaction' => 'date|nullable'  

@@ -16,11 +16,10 @@ return new class extends Migration
             $table->string('type_transaction');
             $table->integer('montant');
             $table->float('frais')->nullable();
-            $table->unsignedBigInteger('destinataire_id');
-            $table->unsignedBigInteger('expediteur_id');
+            $table->string('code')->nullable();
             $table->dateTime('date_transaction')->useCurrent()->nullable();
-            $table->foreign('expediteur_id')->references('id')->on('comptes')->cascadeOnDelete();
-            $table->foreign('destinataire_id')->references('id')->on('comptes')->cascadeOnDelete();
+            $table->foreignId('expediteur_id')->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('destinataire_id')->nullable()->constrained('clients')->cascadeOnDelete();
             $table->boolean('permanent')->nullable();
             $table->timestamps();
         });

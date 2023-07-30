@@ -12,3 +12,14 @@ export interface Compte {
     client: string;
     numero_client: string; 
 }
+export interface Transaction{
+    id: number;
+    montant: number;
+    type_transaction: string;
+    expediteur_id: number;
+    destinataire_id: number;
+    frais: number;
+    code: string|undefined;
+    permanent: boolean;
+    date_transaction: string;
+}

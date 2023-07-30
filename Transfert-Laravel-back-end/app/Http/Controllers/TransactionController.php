@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use App\Http\Resources\TransactionRessource;
+use App\Models\Compte;
 use App\Models\Transaction;
 use Illuminate\Support\Carbon;
 
@@ -41,6 +43,20 @@ class TransactionController extends Controller
             'permanent' => $request->permanent,
             'date_transaction' => Carbon::parse($request->date_transaction)
         ]);
+        if($request->type_transaction == 'Depot'){
+            Compte::where('client_id', $request->destinataire_id)->increment('montant', $request->montant);
+        }
+        else if($request->type_transaction == "Retrait"){
+            Compte::where('client_id', $request->expediteur_id)->decrement('montant', $request->montant);
+        }
+        else if($request->type_transaction == "Transfert"){
+            Compte::where('client_id', $request->destinataire_id)->increment('montant', $request->montant);
+            Compte::where('client_id', $request->expediteur_id)->decrement('montant', $request->montant);
+        }
+        else if($request->type_transaction == "Code"){
+            $code = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+            Transaction::where('id', $transaction->id)->update(['code' => $code]);
+        }
         return response()->json([
             'message' => 'Transaction effectuée avec succès',
             'transaction' => $transaction
@@ -53,7 +69,7 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         $getTransaction = Transaction::find($transaction->id);
-        return $getTransaction;
+        return new TransactionRessource($getTransaction);
 
     }
 
@@ -79,5 +95,10 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+    public function getTransactionExp($expediteur_id){
+        $expediteur_ids = Transaction::where('expediteur_id', $expediteur_id)->pluck('expediteur_id');
+        $getExpediteurId = Transaction::whereIn('expediteur_id', $expediteur_ids)->get();
+        return TransactionRessource::collection($getExpediteurId);
     }
 }

@@ -16,13 +16,21 @@
         </h1>
         <form>
           <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div class="col-span-2 text-white">
+            <div class="col-span-1 text-white">
               <h1 id="icone-expediteur" class="bg-orange-600 w-28 p-3">
                 Expediteur
               </h1>
               <br />
               <hr />
             </div>
+            <div class="codeReplace"></div>
+             <div class=" text-white flex justify-between h-14 codeDiv">
+              <button class="codeText" disabled></button>
+              <button id="btnCode" class="bg-green-600 w-28 p-3 rounded-lg">
+                Code
+              </button>
+            </div>
+             
             <div>
               <label class="text-white dark:text-gray-200" for="telephone"
                 >Compte/Numero</label
@@ -48,6 +56,80 @@
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               />
               <span class="text-red-600" id="nameError"></span>
+
+              <!-- Modal toggle -->
+              <button
+                data-modal-target="defaultModal"
+                data-modal-toggle="defaultModal"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+              >
+                Historique
+              </button>
+
+              <!-- Main modal -->
+              <div
+                id="defaultModal"
+                tabindex="-1"
+                aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+              >
+                <div class="relative w-full max-w-2xl max-h-full">
+                  <!-- Modal content -->
+                  <div
+                    class="relative bg-white rounded-lg shadow dark:bg-gray-700"
+                  >
+                    <!-- Modal header -->
+                    <div
+                      class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600"
+                    >
+                      <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white"
+                      >
+                        Historique des transactions
+                      </h3>
+                      <button
+                        type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="defaultModal"
+                      >
+                        <svg
+                          class="w-3 h-3"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 14 14"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                          />
+                        </svg>
+                        <span class="sr-only closeModal">Close modal</span>
+                      </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="flex flex-col">
+                      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div
+                          class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                        >
+                          <div class="overflow-hidden">
+                            <table
+                              class="min-w-full text-left text-sm font-light"
+                              id="history"
+                            ></table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal footer -->
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-span-2 text-white">
               <h1 id="icone-transaction" class="bg-blue-500 w-28 p-3">
@@ -96,20 +178,20 @@
                 name="transaction"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               >
-                <option value="depot">Depot</option>
-                <option value="retrait">Retrait</option>
-                <option value="transfert">Transfert</option>
-                <option value="code">Code</option>
+                <option value="Depot">Depot</option>
+                <option value="Retrait">Retrait</option>
+                <option value="Transfert">Transfert</option>
+                <option value="Code">Code</option>
               </select>
             </div>
-            <div class="col-span-2 text-white">
+            <div class="col-span-2 text-white destDiv">
               <h1 id="icone-destinaire" class="bg-blue-500 w-28 p-3">
                 Destinataire
               </h1>
               <br />
               <hr />
             </div>
-            <div>
+            <div class="destDiv">
               <label class="text-white dark:text-gray-200" for="telephone"
                 >Compte/Numero</label
               >
@@ -122,7 +204,7 @@
               <span class="text-red-600" id="telError"></span>
             </div>
 
-            <div>
+            <div class="destDiv">
               <label class="text-white dark:text-gray-200" for="nom"
                 >Nom Complet</label
               >
@@ -149,6 +231,7 @@
         </form>
       </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

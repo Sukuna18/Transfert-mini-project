@@ -15,7 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         $getClients = Client::all();
-        return $getClients;
+        return ClientRessource::collection($getClients);
     }
 
     /**
@@ -40,7 +40,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {
         $getClientById = Client::find($client->id);
-        return $getClientById;
+        return new ClientRessource($getClientById);
     }
 
     /**
