@@ -70,7 +70,7 @@ class CompteController extends Controller
     public function showByNumber($numeroCompte)
     {
         $getCompteByNumber = Compte::whereHas('client', function ($query) use ($numeroCompte) {
-            $query->where('telephone', $numeroCompte);
+            $query->where('telephone', $numeroCompte)->orWhere('numero_compte', $numeroCompte);
         })->first();
         return new CompteRessource($getCompteByNumber);
     }
